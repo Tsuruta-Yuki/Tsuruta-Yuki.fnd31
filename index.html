@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#000000">
   <script type="text/javascript" src="script.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
@@ -33,14 +34,14 @@
   </ol>
   <p>※コンソールBoxを開いて、天の声を聞いてください</p>
   <input type="button" value="天の声" onclick="getAdviceFromHeaven()">
-  <p>方針:計算は機械が実施するので、3に決定!!</p>
+  <p><span class="conclusion">方針:計算は機械が実施するので、3に決定!!</span></p>
   
 
   <h2>4.解説2:ソースコードへの落とし方</h2>
     <table border = "1">
       <tr>
-        <th>やりたい事</th>  
-        <th>使う機能</th>  
+        <th><div class="tableitem">やりたい事</div></th>  
+        <th><div class="tableitem">使う機能</div></th>  
       </tr>
 
       <tr>
@@ -122,7 +123,7 @@ test( isPrime(4), false);
 
   <p>ネットで「Javascript」、「ループ抜ける」で検索すると、</p>
   <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/break">breakを発見</a>
-  <p>なのでbreakを使ってソースコードを修正</p>
+  <p>なので<span class="conclusion">breakを使ってソースコードを修正</span></p>
   <img src="addBreak.png" title="Day5 ナイトメア_最終コード">
   <p>コンソールBoxを開いて、以下の実行ボタンをクリックすると</p>
   <input type="button" value="実行" onclick="test( isPrime_final(4), false)">
