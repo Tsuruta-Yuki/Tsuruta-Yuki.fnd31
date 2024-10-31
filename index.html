@@ -6,16 +6,134 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#000000">
   <script type="text/javascript" src="script.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+  <script>hljs.highlightAll();</script>
 </head>
 
 <body>
-  <h1>DIG プログラミング基礎へようこそ！</h1>
-  <h2>Mac をお使いの方は、 <font color="blue"> Cmd + Option + J</font><br>
-    Windows/Linux をお使いの方は、 <font color="blue"> Control+Shift+J</font> <br>
-    をクリックして、デベロッパーツールを開いてください。</h2>
-  <h2>下記にユニコーンの画像が表示されていれば成功です！</h2>
-  <img src="https://cdn.dribbble.com/users/1281272/screenshots/4515441/unicorn.gif">
-  <h3>30分悩んで進まなくなったら…helpチャンネルで質問してみましょう！</h3>
+  <h1>Day5 ナイトメアの解説(素数の判別)</h1>
+
+  <h2>1.問題</h2>
+  <img src="question.png" title="Day5 ナイトメア">
+
+  <h2>2.テーマ選定の背景</h2>
+  <ul>
+    <li>自分なりに論理立てて開発できた</li>
+    <li>難問が解けた時の嬉しさを共有したい</li>
+    <li>最近最大の素数が更新された(2<sup>82589933</sup> - 1 → 2<sup>136279841</sup> - 1)</li>
+  </ul>
+
+  <h2>3.解説1:解き方の方針検討</h2>
+  <ol>
+    <li>素数の公式を探す → 残念ながらない</li>
+    <li>6の倍数の前後に多い特性を使う → 100%適用できる訳ではない</li>
+    <li>気合で求める(N-1までの全ての数でNを割ってみる) → (人間目線だと)何回も割るのがめんどい！</li>
+  </ol>
+  <p>※コンソールBoxを開いて、天の声を聞いてください</p>
+  <input type="button" value="天の声" onclick="getAdviceFromHeaven()">
+  <p>方針:計算は機械が実施するので、3に決定!!</p>
+  
+
+  <h2>4.解説2:ソースコードへの落とし方</h2>
+    <table border = "1">
+      <tr>
+        <th>やりたい事</th>  
+        <th>使う機能</th>  
+      </tr>
+
+      <tr>
+        <th>割れるかの判断</th>  
+        <th>%</th>  
+      </tr>
+  
+      <tr>
+        <th>N-1まで繰り返す</th>  
+        <th>for loop</th>  
+      </tr>
+
+      <tr>
+        <th>割れたかどうかの情報</th>  
+        <th>そのための変数の準備</th>  
+      </tr>
+  
+      <tr>
+        <th>1はループから除外したい</th>  
+        <th>if</th>  
+      </tr>
+    </table>
+    <p>※1回目のテスト実行に向けてのやりたい事になります</p>
+
+  <h2>5.解説3:一回目のテスト実行</h2>
+    <pre><code>
+/**
+ * @param {number} num - 確認したい数字
+ * @returns {boolean} 与えられた数字が素数かどうか
+ */
+
+
+function isPrime(num) {
+  let flag=0; // 0:素数 1:素数ではない
+  let i =0;
+  if(num === 1) {
+    flag = 1;
+  } else if (num >=2) {
+    for (i = 2; i < num; i++) {
+        if(num % i === 0){
+          flag = 1;
+        } else {
+          flag = 0;
+        }
+    }
+  }
+
+  if (flag === 0) {
+    return true;
+  } else if (flag === 1) {
+    return false;
+  }
+}
+
+
+test( isPrime(4), false);
+    </code></pre>
+<p>※テスト関数の記載はWeb上では省略しています</p>
+<p>コンソールBoxを開いて、以下の実行ボタンをクリック</p>
+
+<input type="button" value="実行" onclick="test( isPrime(4), false)">
+
+
+
+  <h2>6.解説4:デバッグ</h2>
+  <p>怪しいと思う変数をconsole.logでひたすら確認する → 今回はflagに注目</p>
+  <img src="debug.png" title="Day5 ナイトメア_デバッグ">
+  <p>今回はfor loopの中にconsole.logを入れてみた所・・・</p>
+  <img src="debug_result.png" title="Day5 ナイトメア_デバッグ結果">
+  <p>i=2で素数ではないと判断したのに、i=3の結果でflagが上書きされている</p>
+
+  <h2>7.解説5:テストパスに向けて</h2>
+  <p>flagを上書きしないようにするのが次の目標</p>
+  <p>別の変数を準備して、if文を使ってflag=1の時は上書きされないようにしてもいいけど・・・</p>
+  <p>コンソールBoxを開いて、以下のピコーン!ボタンをクリック</p>
+
+  <input type="button" value="ピコーン!" onclick="picoon()">
+
+
+  <p>ネットで「Javascript」、「ループ抜ける」で検索すると、</p>
+  <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/break">breakを発見</a>
+  <p>なのでbreakを使ってソースコードを修正</p>
+  <img src="addBreak.png" title="Day5 ナイトメア_最終コード">
+  <p>コンソールBoxを開いて、以下の実行ボタンをクリックすると</p>
+  <input type="button" value="実行" onclick="test( isPrime_final(4), false)">
+
+
+
+
+  <h2>8.まとめ</h2>
+  <p>11/1の発表練習で作るか判断(たぶん4分以内に収まらないので削除)</p>
+
+
 </body>
 
 </html>
