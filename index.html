@@ -13,6 +13,9 @@
   <script>hljs.highlightAll();</script>
 </head>
 
+
+
+
 <body>
   <h1>Day5 ナイトメアの解説(素数の判別)</h1>
 
@@ -34,6 +37,7 @@
   </ol>
   <p>※コンソールBoxを開いて、天の声を聞いてください</p>
   <input type="button" value="天の声" onclick="getAdviceFromHeaven()">
+  <p>   </p>
   <p><span class="conclusion">方針:計算は機械が実施するので、3に決定!!</span></p>
   
 
@@ -67,39 +71,10 @@
     <p>※1回目のテスト実行に向けてのやりたい事になります</p>
 
   <h2>5.解説3:一回目のテスト実行</h2>
-    <pre><code>
-/**
- * @param {number} num - 確認したい数字
- * @returns {boolean} 与えられた数字が素数かどうか
- */
-
-
-function isPrime(num) {
-  let flag=0; // 0:素数 1:素数ではない
-  let i =0;
-  if(num === 1) {
-    flag = 1;
-  } else if (num >=2) {
-    for (i = 2; i < num; i++) {
-        if(num % i === 0){
-          flag = 1;
-        } else {
-          flag = 0;
-        }
-    }
-  }
-
-  if (flag === 0) {
-    return true;
-  } else if (flag === 1) {
-    return false;
-  }
-}
-
-
-test( isPrime(4), false);
-    </code></pre>
-<p>※テスト関数の記載はWeb上では省略しています</p>
+  <img src="codeAnalysis.png" title="Day5 ナイトメア_1回目のコード説明">
+  
+    <p>※テストは代表としてtest( isPrime(4), false);で実行</p>
+    <p>※テスト関数の記載はWeb上では省略しています</p>
 <p>コンソールBoxを開いて、以下の実行ボタンをクリック</p>
 
 <input type="button" value="実行" onclick="test( isPrime(4), false)">
@@ -114,7 +89,7 @@ test( isPrime(4), false);
   <p>i=2で素数ではないと判断したのに、i=3の結果でflagが上書きされている</p>
 
   <h2>7.解説5:テストパスに向けて</h2>
-  <p>flagを上書きしないようにするのが次の目標</p>
+  <p><span class="nextAction">flagを上書きしないようにするのが次の目標</span></p>
   <p>別の変数を準備して、if文を使ってflag=1の時は上書きされないようにしてもいいけど・・・</p>
   <p>コンソールBoxを開いて、以下のピコーン!ボタンをクリック</p>
 
@@ -129,10 +104,6 @@ test( isPrime(4), false);
   <input type="button" value="実行" onclick="test( isPrime_final(4), false)">
 
 
-
-
-  <h2>8.まとめ</h2>
-  <p>11/1の発表練習で作るか判断(たぶん4分以内に収まらないので削除)</p>
 
 
 </body>
