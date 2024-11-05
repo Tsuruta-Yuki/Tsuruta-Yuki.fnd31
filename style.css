@@ -2,9 +2,26 @@
 background-color: aquamarine; 
 }
 
-
 .conclusion{
     color:  #F81894;
+    font-size: 30px;
     }
     
-    
+.nextAction{
+  color:  red;
+  font-size: 30px;
+  }
+      
+
+h1{
+  font-size: 50px;
+  }
+
+
+h2{
+    font-size: 35px;
+    padding: 0.2rem;
+    margin-bottom: 0.2rem;
+    background: linear-gradient(transparent 80%, #16b5dd 60%);
+    font-weight: bold;
+   }
